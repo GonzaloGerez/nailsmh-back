@@ -19,7 +19,24 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
+import TurnosController from 'App/Controllers/Http/TurnosController'
 
 Route.get('/', async () => {
   return { hello: 'world' }
 })
+
+Route.group(()=>{
+
+  Route.group(()=>{
+    Route.get('/turnos', 'TurnosController.getAllTurnos')
+    Route.post('/saveTurno', 'TurnosController.saveTurno')
+    Route.post('/updateTurno', 'TurnosController.updateTurno')
+    Route.post('/deleteTurno', 'TurnosController.deleteTurno')
+    Route.post('/createUser', 'AuthController.registerUser')
+  }).middleware('auth')
+  
+
+  Route.group(()=>{
+    Route.post('/login', 'AuthController.Login')
+  }).prefix('/auth')
+}).prefix('/api')
