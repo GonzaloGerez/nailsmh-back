@@ -59,4 +59,11 @@ export default class AuthController {
 
         return token.toJSON()
     }
+
+    public async Logout({auth, response}: HttpContextContract){
+        await auth.use('api').revoke()
+        return response.status(200).json({
+            revoked: true
+        })
+    }
 }
