@@ -26,7 +26,17 @@ Route.get('/', async () => {
 })
 
 Route.group(()=>{
-  Route.get('/turnos', 'TurnosController.getAllTurnos')
-  Route.post('/saveTurno', 'TurnosController.saveTurno')
-  Route.post('/updateTurno', 'TurnosController.updateTurno')
+
+  Route.group(()=>{
+    Route.get('/turnos', 'TurnosController.getAllTurnos')
+    Route.post('/saveTurno', 'TurnosController.saveTurno')
+    Route.post('/updateTurno', 'TurnosController.updateTurno')
+    Route.post('/deleteTurno', 'TurnosController.deleteTurno')
+    Route.post('/createUser', 'AuthController.registerUser')
+  }).middleware('auth')
+  
+
+  Route.group(()=>{
+    Route.post('/login', 'AuthController.Login')
+  }).prefix('/auth')
 }).prefix('/api')

@@ -16,8 +16,11 @@ export default class Cliente extends BaseModel {
   @column()
   public telefono: string
 
+  @column()
+  public user_id: number
+
   @hasOne(()=> Usuario, {
-    localKey: 'idCliente',
+    localKey: 'user_id',
     foreignKey: 'id'
   })
   public usuario: HasOne<typeof Usuario>
