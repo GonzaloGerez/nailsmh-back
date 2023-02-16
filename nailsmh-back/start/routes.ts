@@ -33,6 +33,7 @@ Route.group(()=>{
     Route.post('/updateTurno', 'TurnosController.updateTurno')
     Route.post('/deleteTurno', 'TurnosController.deleteTurno')
     Route.post('/createUser', 'AuthController.registerUser')
+    Route.post('/logout', 'AuthController.Logout')
   }).middleware('auth')
   
 
